@@ -24,9 +24,21 @@
   <refsynopsisdiv>
     <cmdsynopsis>
       <command>koha-remove</command>
+      <arg><option>--keep-mysql</option></arg>
       <arg choice="req" rep="repeat">instancename</arg>
     </cmdsynopsis>
   </refsynopsisdiv>
+
+  <refsect1><title>Options</title>
+  <variablelist>
+    <varlistentry>
+      <term><option>--keep-mysql</option></term>
+      <listitem>
+        <para>Leave the MySQL database and user when removing the Koha instance.</para>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+  </refsect1>
 
   <refsect1><title>Description</title>
   <para>Remove one or more Koha instance(s). This removes all files associated with a Koha instance.</para>
