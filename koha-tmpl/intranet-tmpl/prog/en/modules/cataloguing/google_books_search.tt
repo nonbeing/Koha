@@ -1,0 +1,66 @@
+[% INCLUDE 'doc-head-open.inc' %]
+<title>Koha &rsaquo; Cataloging</title>
+[% INCLUDE 'greybox.inc' %]
+[% INCLUDE 'doc-head-close.inc' %]
+
+</head>
+<body id="cat_addbooks" class="cat">
+[% INCLUDE 'header.inc' %]
+[% INCLUDE 'cataloging-search.inc' %]
+
+<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Home</a> &rsaquo; Cataloging</div>
+
+[% IF ( hits ) %]
+[% count = 1 %]
+<div class="searchresults">
+    <br></br> <h3>Showing [% hits %] result(s) from Google Books:</h3>
+        <table>
+            <tr>
+                <th>Number</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>ISBN</th>
+                <th>Subject(s)</th>
+                <th>Publisher</th>
+                <th>Publish Date</th>
+                <th>Page count</th>
+                <th>View MARC</th>
+                <th>Import MARC</th>
+            </tr>
+            [% FOREACH record IN marc_records %]
+                [% IF ( loop.odd ) %]
+                    <tr>
+                [% ELSE %]
+                    <tr class="highlight">
+                [% END %]
+
+                    [% self_link = record.field('946').subfield('a') %]
+                    [% isbn = record.field('020').shift %]
+                    [% info_link = record.field('947').subfield('a') %]
+                    [% subject = record.field('650').shift %]
+                    [% publisher = record.field('260').subfield('b') %]
+                    [% publish_date = record.field('260').subfield('c') %]
+                    [% page_count = record.field('300').subfield('a') %]
+                    [% breeding_id = breeding_loop.shift %]
+                    <td><a href="[% self_link %]" title="Google Books API Link">[% count %]</a></td>
+                    <td> [% record.title %] </td>
+                    <td> [% record.author %] </td>
+                    <td><a href="[% info_link %]" title="Google Books Link">[% isbn.as_string() %]</a></td>
+                    <td> [% subject.as_string() %] </td>
+                    <td> [% publisher %] </td>
+                    <td> [% publish_date %] </td>
+                    <td> [% page_count %] </td>
+                    <td><a href="/cgi-bin/koha/catalogue/showmarc.pl?importid=[% breeding_id %]" title="MARC" rel="gb_page_center[600,500]">view</a></td>
+                    <td><a href="/cgi-bin/koha/cataloguing/addbiblio.pl?biblionumber=0&z3950=1&breedingid=[% breeding_id %]" title="Import MARC Record"> import </a></td>
+                </tr>
+                [% count = count + 1 %]
+            [% END %]    
+        </table>
+</div>
+[% ELSE %]
+<br></br>
+<h3>Google Books does not have any results for your query:  "[% query %]" </h3>
+[% END %]
+
+
+[% INCLUDE 'intranet-bottom.inc' %] 
