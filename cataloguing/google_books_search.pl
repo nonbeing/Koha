@@ -46,9 +46,6 @@ my $mech =  WWW::Mechanize->new();
 
 my $input = new CGI;
 my $query   = $input->param('q');
-my @value   = $input->param('value');
-my $page    = $input->param('page') || 1;
-my $success = $input->param('biblioitem');
 
 my ( $template, $loggedinuser, $cookie ) = get_template_and_user(
     {   
