@@ -28,22 +28,29 @@ use C4::Context;
 use C4::Auth;
 use C4::Output;
 use C4::AuthoritiesMarc;
-use C4::Koha;    
+use C4::Koha;    # XXX subfield_is_koha_internal_p
+
+my $query        = new CGI;
+my $op           = $query->param('op') || '';
+my $authtypecode = $query->param('authtypecode') || '';
+my $dbh          = C4::Context->dbh;
+
+my ( $template, $loggedinuser, $cookie );
+
+( $template, $loggedinuser, $cookie ) = get_template_and_user(
+        {
+            #template_name   => "opac-authorities-home.tmpl",
+            template_name   => "opac-contact-us.tmpl",
+            query           => $query,
+            type            => 'opac',
+            authnotrequired => ( C4::Context->preference("OpacPublic") ? 1 : 0 ),
+            debug           => 1,
+        }
+    );
 
 
-my $input = new CGI;
-my $query = $input->param('q');
 
-my ( $template, $loggedinuser, $cookie ) = get_template_and_user(
-    {   
-        template_name   => "opac-contact-us.tmpl",
-        query           => $query,
-        type            => "opac",
-        authnotrequired => ( C4::Context->preference("OpacPublic") ? 1 : 0 ),
-        debug   => 1,
-    }   
-);
-
-$template->param( authtypesloop => \@authtypesloop );
-
+# Print the page
 output_html_with_http_headers $query, $cookie, $template->output;
+
+

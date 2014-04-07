@@ -1,30 +1,55 @@
-[% USE Koha %]
 [% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catalog &rsaquo; Authority search
 [% INCLUDE 'doc-head-close.inc' %]
+    <style>
+        input, textarea, select, button {
+          width : 300px;
+          margin-left: 15px;
+
+          -webkit-box-sizing: border-box; /* For legacy WebKit based browsers */
+             -moz-box-sizing: border-box; /* For all Gecko based browsers */
+                  box-sizing: border-box;
+        }
+    </style>
 </head>
 <body id="opac-authorities">
 [% IF ( OpacNav ) %]<div id="doc3" class="yui-t1">[% ELSE %]<div id="doc3" class="yui-t7">[% END %]
    <div id="bd">
 [% INCLUDE 'masthead.inc' %]
 
-
 <div id="yui-main">
     <div class="yui-b">
         <div class="yui-g">
-            <div id="userauthhome" class="container">
-                <form name="f" action="/cgi-bin/koha/opac-contact-us.pl" method="get">
-                    <input type="hidden" name="type" value="opac" />
-                        <fieldset class="rows">
-                                    <h2>Send Us A Message</h2>
-                                    <input type="text" name="Name" id="Name" value="" />
-                        </fieldset>
+            <div id="contactus" class="container">
+                <form name="ContactUs" action="/cgi-bin/koha/opac-contact-us.pl" method="get">
+                    <h1>Contact Us</h1>
+                    <fieldset class="rows"><legend>Send us a message</legend>
+                        <p style="margin-left:15px;">All fields are mandatory</p>
+                        <p /><input type="text" name="Name" id="Name" value="" placeholder="Name" size="50" />
+                        <div class="clear" />
+
+                        <p /><input class="field-subject form_field" data-val="true" data-val-regex="Invalid email address." data-val-regex-pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" id="txtEmail" name="Email" placeholder="Email" type="text" value="" size="50" />
+
+                        <span class="field-validation-valid" data-valmsg-for="Email" data-valmsg-replace="true" />
+                        <div class="clear" />
+
+                        <p /><input class="field-subject form_field" id="txtSubject" name="Subject" placeholder="Subject" type="text" value="" size="50" />
+                        <span class="field-validation-valid" data-valmsg-for="Subject" data-valmsg-replace="true" />
+                        <div class="clear" />
+
+                        <p /><textarea class="field-subject form_field" cols="20" id="txtMessage" name="Message" placeholder="Message" rows="5" cols="75" style="height: 100px;" required></textarea>
+                        <span class="field-validation-valid" data-valmsg-for="Message" data-valmsg-replace="true" />
+                        <div class="clear" />
+
+
+                        <input type="submit" value="Submit" class="submit" />
+                        <p/>
+                    </fieldset>
+
                 </form>
             </div>
         </div>
     </div>
 </div>
-
-
 [% IF ( OpacNav ) %]
 <div class="yui-b">
 <div id="leftmenus" class="container">
