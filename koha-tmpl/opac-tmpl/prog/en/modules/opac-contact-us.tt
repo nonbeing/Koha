@@ -1,8 +1,8 @@
 [% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catalog &rsaquo; Authority search
 [% INCLUDE 'doc-head-close.inc' %]
     <style>
-        input, textarea, select, button {
-          width : 300px;
+        .contactus-form {
+          width: 300px;
           margin-left: 15px;
 
           -webkit-box-sizing: border-box; /* For legacy WebKit based browsers */
@@ -24,25 +24,24 @@
                     <h1>Contact Us</h1>
                     <fieldset class="rows"><legend>Send us a message</legend>
                         <p style="margin-left:15px;">All fields are mandatory</p>
-                        <p /><input type="text" name="Name" id="Name" value="" placeholder="Name" size="50" />
-                        <div class="clear" />
+                        <p /><input class="contactus-form" type="text" name="Name" id="Name" value="" placeholder="Name" required/>
+                        <div class="clear"/>
 
-                        <p /><input class="field-subject form_field" data-val="true" data-val-regex="Invalid email address." data-val-regex-pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" id="txtEmail" name="Email" placeholder="Email" type="text" value="" size="50" />
+                        <p /><input class="contactus-form" data-val="true" data-val-regex="Invalid email address." data-val-regex-pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" id="txtEmail" name="Email" placeholder="Email Address" type="text" value="" size="50" required/>
 
                         <span class="field-validation-valid" data-valmsg-for="Email" data-valmsg-replace="true" />
                         <div class="clear" />
 
-                        <p /><input class="field-subject form_field" id="txtSubject" name="Subject" placeholder="Subject" type="text" value="" size="50" />
+                        <p /><input class="contactus-form" id="txtSubject" name="Subject" placeholder="Subject" type="text" value="" size="50" required/>
                         <span class="field-validation-valid" data-valmsg-for="Subject" data-valmsg-replace="true" />
                         <div class="clear" />
 
-                        <p /><textarea class="field-subject form_field" cols="20" id="txtMessage" name="Message" placeholder="Message" rows="5" cols="75" style="height: 100px;" required></textarea>
+                        <p /><textarea class="contactus-form" cols="20" id="txtMessage" name="Message" placeholder="Message" rows="5" cols="75" style="height: 100px;" required></textarea>
                         <span class="field-validation-valid" data-valmsg-for="Message" data-valmsg-replace="true" />
                         <div class="clear" />
 
-
-                        <input type="submit" value="Submit" class="submit" />
-                        <p/>
+                        <input class="contactus-form" type="submit" value="Submit" class="submit" />
+                        <p />
                     </fieldset>
 
                 </form>
