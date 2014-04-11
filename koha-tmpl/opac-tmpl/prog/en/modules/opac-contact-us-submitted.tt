@@ -1,0 +1,36 @@
+[% INCLUDE 'doc-head-open.inc' %][% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catalog &rsaquo; Authority search
+[% INCLUDE 'doc-head-close.inc' %]
+    <style>
+        .contactus-form {
+          width: 300px;
+          margin-left: 15px;
+
+          -webkit-box-sizing: border-box; /* For legacy WebKit based browsers */
+             -moz-box-sizing: border-box; /* For all Gecko based browsers */
+                  box-sizing: border-box;
+        }
+    </style>
+</head>
+<body id="opac-authorities">
+[% IF ( OpacNav ) %]<div id="doc3" class="yui-t1">[% ELSE %]<div id="doc3" class="yui-t7">[% END %]
+   <div id="bd">
+[% INCLUDE 'masthead.inc' %]
+
+<div id="yui-main">
+    <div class="yui-b">
+        <div class="yui-g">
+            <div id="contactus" class="container">
+               <h3>Thank you for contacting us. <br /><br />We will respond to your message in some time.</h3>
+            </div>
+        </div>
+    </div>
+</div>
+[% IF ( OpacNav ) %]
+<div class="yui-b">
+<div id="leftmenus" class="container">
+[% INCLUDE 'navigation.inc' %]
+</div>
+</div>[% END %]
+</div>
+[% INCLUDE 'opac-bottom.inc' %]
+

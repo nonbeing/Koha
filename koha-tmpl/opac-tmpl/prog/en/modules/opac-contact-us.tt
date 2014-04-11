@@ -21,16 +21,19 @@
         <div class="yui-g">
             <div id="contactus" class="container">
                 <form name="ContactUs" action="/cgi-bin/koha/opac-contact-us.pl" method="get">
+                    <input type="hidden" name="op" value="do_submit" />
                     <h1>Contact Us</h1>
                     <fieldset class="rows"><legend>Send us a message</legend>
-                        <p style="margin-left:15px;">All fields are mandatory</p>
-                        <p /><input class="contactus-form" type="text" name="Name" id="Name" value="" placeholder="Name" required/>
+                        <p style="margin-left:15px;"></p>
+                        <p /><input class="contactus-form" type="text" name="Name" id="Name" value="" placeholder="Name" required />
                         <div class="clear"/>
 
                         <p /><input class="contactus-form" data-val="true" data-val-regex="Invalid email address." data-val-regex-pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" id="txtEmail" name="Email" placeholder="Email Address" type="text" value="" size="50" required/>
 
                         <span class="field-validation-valid" data-valmsg-for="Email" data-valmsg-replace="true" />
                         <div class="clear" />
+
+                        <p /><input class="contactus-form" type="text" name="Phone" id="Phone" placeholder="Phone Number (Optional)"  value="" />
 
                         <p /><input class="contactus-form" id="txtSubject" name="Subject" placeholder="Subject" type="text" value="" size="50" required/>
                         <span class="field-validation-valid" data-valmsg-for="Subject" data-valmsg-replace="true" />
@@ -57,3 +60,4 @@
 </div>[% END %]
 </div>
 [% INCLUDE 'opac-bottom.inc' %]
+
