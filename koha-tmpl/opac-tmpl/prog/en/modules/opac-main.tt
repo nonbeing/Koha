@@ -1,33 +1,36 @@
-[% USE Koha %]
 [% INCLUDE 'doc-head-open.inc' %]
 [% IF ( LibraryNameTitle ) %][% LibraryNameTitle %][% ELSE %]Koha online[% END %] catalog
 [% INCLUDE 'doc-head-close.inc' %]
+  <!-- sliderman.js -->
+  <script type="text/javascript" src="/opac-tmpl/prog/en/js/sliderman.1.3.8.js"></script>
+  <link rel="stylesheet" type="text/css" href="/opac-tmpl/prog/en/css/sliderman.css" />
+  <!-- /sliderman.js -->
 </head>
 <body id="opac-main">
 [% IF ( OpacNav ) %]<div id="doc3" class="yui-t1">[% ELSE %]<div id="doc3" class="yui-t7">[% END %]
    <div id="bd">
 [% INCLUDE 'masthead.inc' %]
 
-	<div id="yui-main">
+    <div id="yui-main">
 
-	<div class="yui-b">
+    <div class="yui-b">
      [% IF ( opacuserlogin ) %]
-	 [% IF ( loggedinusername ) %]
+     [% IF ( loggedinusername ) %]
          <div id="loggedin" class="yui-ge">
-	 [% ELSE %]
+     [% ELSE %]
         <div id="notloggedin" class="yui-ge">
          [% END %]
      [% ELSE %]
         <div id="notloggedin" class="yui-ge">
     [% END %]
         <div class="yui-u first">
-	[% IF ( koha_news_count ) %]
+    [% IF ( koha_news_count ) %]
 <div id="news" class="container">
     <table>
     [% FOREACH koha_new IN koha_news %]
     <tr><th>[% koha_new.title %]</th></tr>
     <tr><td><p>[% koha_new.new %]</p>
-                <p class="newsfooter"><i>(published on [% koha_new.newdate %])</i></p></td></tr>
+                <p><i>(published on [% koha_new.newdate %])</i></p></td></tr>
     [% END %]
     </table>
 </div>
@@ -37,35 +40,70 @@
     <div id="daily-quote" class="container"><h1>Quote of the Day</h1><div><span id="daily-quote-text">[% daily_quote.text %]</span><span id="daily-quote-sep"> ~ </span><span id="daily-quote-source">[% daily_quote.source %]</span></div></div>
 [% END %]
 
-	[% IF ( OpacMainUserBlock ) %]<div id="opacmainuserblock" class="container">[% OpacMainUserBlock %]</div>[% END %]
+    [% IF ( OpacMainUserBlock ) %]<div id="opacmainuserblock" class="container">[% OpacMainUserBlock %]</div>[% END %]
  [% IF ( OpacMainUserBlockMobile ) %]<div id="opacmainuserblockmobile" class="container">[% OpacMainUserBlockMobile %]</div>[% END %]
 
-</div>
-		
+  <!-- /sliderman.js -->
+      <div id="slider_container_2">
+
+        <div id="SliderName_2" class="SliderName_2">
+          <img src="/opac-tmpl/prog/en/img/1.png" width="700" height="450" alt="img first" title="img first" usemap="#img1map" />
+          <map name="img1map">
+            <area href="#img1map-area1" shape="rect" coords="100,100,200,200" />
+            <area href="#img1map-area2" shape="rect" coords="300,100,400,200" />
+          </map>
+          <div class="SliderName_2Description">Welcome to The Art of Living Library</div>
+          <img src="/opac-tmpl/prog/en/img/2.png" width="700" height="450" alt="img second" title="img second" />
+          <div class="SliderName_2Description">Welcome to The Art of Living Library</div>
+          <img src="/opac-tmpl/prog/en/img/3.png" width="700" height="450" alt="img third" title="img third" />
+          <div class="SliderName_2Description">Welcome to The Art of Living Library</div>
+          <img src="/opac-tmpl/prog/en/img/4.png" width="700" height="450" alt="img fourth" title="img fourth" />
+          <div class="SliderName_2Description">Welcome to The Art of Living Library</div>
+          <img src="/opac-tmpl/prog/en/img/5.png" width="700" height="450" alt="img fifth" title="img fifth" />
+          <div class="SliderName_2Description">Welcome to The Art of Living Library</div>
+        </div>
+        <div class="c"></div>
+        <div id="SliderNameNavigation_2"></div>
+        <div class="c"></div>
+
+        <script type="text/javascript">
+          effectsDemo2 = 'rain,stairs,fade';
+          var demoSlider_2 = Sliderman.slider({container: 'SliderName_2', width: 700, height: 450, effects: effectsDemo2,
+            display: {
+              autoplay: 3000,
+              loading: {background: '#000000', opacity: 0.5, image: 'img/loading.gif'},
+              buttons: {hide: true, opacity: 1, prev: {className: 'SliderNamePrev_2', label: ''}, next: {className: 'SliderNameNext_2', label: ''}},
+              description: {hide: true, background: '#000000', opacity: 0.4, height: 50, position: 'bottom'},
+              navigation: {container: 'SliderNameNavigation_2', label: '<img src="img/clear.gif" />'}
+            }
+          });
+        </script>
+      </div>
+    </div>
+  <!-- /sliderman.js -->
+
+
     [% IF ( opacuserlogin || OpacNavRight ) %]
     <div class="yui-u">
     [% IF ( opacuserlogin ) %]
     [% UNLESS ( loggedinusername ) %]
     [% UNLESS ( casAuthentication ) %]
     <div id="login" class="container clearfix">
-	<form action="/cgi-bin/koha/opac-user.pl" method="post" name="auth" id="auth">
-    <input type="hidden" name="koha_login_context" value="opac" />
-	<fieldset class="brief">
-        <legend>Log in to your account:</legend>
-		<ol>
-		<li><label for="userid">Login:</label><input type="text" id="userid" size="10" name="userid" /></li>
-		<li><label for="password">Password:</label><input type="password" id="password" size="10" name="password" /></li>
-		</ol>	 <fieldset class="action">
-	 <input type="submit" value="Log In" class="submit" />
-
-        [% IF PatronSelfRegistration && PatronSelfRegistrationDefaultCategory %]<div id="patronregistration">Don't have an account? <a href="/cgi-bin/koha/opac-memberentry.pl">Register here.</a></div>[% END %]
-
-	 </fieldset></fieldset>
-	</form>
-	</div>
-    [% END %]
-    [% IF persona %]
-     <a href="#" class="persona-button" id="browserid" ><span>Sign in with your Email</span></a>
+      <form action="/cgi-bin/koha/opac-user.pl" method="post" name="auth" id="auth">
+        <input type="hidden" name="koha_login_context" value="opac" />
+        <fieldset class="brief">
+            <legend>Log in to your account:</legend>
+            <ol>
+            <li><label for="userid">Login:</label><input type="text" id="userid" size="10" name="userid" /></li>
+            <li><label for="password">Password:</label><input type="password" id="password" size="10" name="password" />
+            </li>
+            </ol>
+            <fieldset class="action">
+              <input type="submit" value="Log In" class="submit" />
+            </fieldset>
+        </fieldset>
+      </form>
+    </div>
     [% END %]
     [% END %]
     [% END %]
